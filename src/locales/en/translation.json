@@ -1,0 +1,100 @@
+{
+  "bio.title": "Greetings, I am",
+  "bio.description": "I am a developer from Russia. I am <span class='text-[14px] opacity-70'>(almost)</span> FullStack and <span class='text-[14px] opacity-70'>(a little)</span> DevOps. I write Frontend in Next.js and Backend in Bun (ElysiaJS).",
+  "bio.list.all": "Full list",
+
+  "spotify.title.none": "Hmm... It seems there's nothing here",
+
+  "theme.light": "Light",
+  "theme.dark": "Dark",
+
+  "skills.title": "Skills",
+  "skills.subtitle": "My skills",
+  "skills.content": "See all my programming skills.<br/>Languages, frameworks I use or want to learn.",
+
+  "projects.title": "Projects",
+  "projects.subtitle": "My projects",
+  "projects.content": "See all my projects, both personal and client work. Completed, in development, and also frozen.",
+
+  "skills.languages": "Programming Languages",
+  "skills.backend": "Backend",
+  "skills.frontend": "Frontend",
+  "skills.other": "Other",
+
+  "skills.typescript.name": "TypeScript",
+  "skills.typescript.description": "Modern typed language that extends JavaScript",
+
+  "skills.csharp.name": "C#",
+  "skills.csharp.description": "Used in game development with Unity",
+
+  "skills.rust.name": "Rust",
+  "skills.rust.description": "Safe and fast systems programming language",
+
+  "skills.kotlin.name": "Kotlin",
+  "skills.kotlin.description": "Modern language for JVM and Android development",
+
+  "skills.bun.name": "Bun",
+  "skills.bun.description": "High-performance JavaScript runtime with a built-in bundler",
+
+  "skills.elysia.name": "ElysiaJS",
+  "skills.elysia.description": "Lightweight and fast framework for building APIs on Bun",
+
+  "skills.prisma.name": "PrismaORM",
+  "skills.prisma.description": "Modern ORM for working with databases in TypeScript",
+
+  "skills.nextjs.name": "Next.js",
+  "skills.nextjs.description": "React framework with SSR support and great performance",
+
+  "skills.react.name": "React",
+  "skills.react.description": "Library for building user interfaces",
+
+  "skills.tailwind.name": "Tailwind CSS",
+  "skills.tailwind.description": "Utility-first CSS framework for rapidly building responsive designs",
+
+  "skills.discordjs.name": "Discord.js",
+  "skills.discordjs.description": "Library for creating Discord bots using JavaScript/TypeScript",
+
+  "skills.status.in_active_use": "In active use",
+  "skills.status.in_use": "In use",
+  "skills.status.learning": "Learning",
+
+  "projects": {
+    "my": "My",
+    "order": "Orders",
+    "status": {
+      "in_dev": "In development",
+      "not_supported": "Not supported anymore",
+      "production": "Production"
+    },
+    "biography": {
+      "name": "Biography",
+      "description": "My portfolio website, an improved version of the previous one (v1). Fully rewritten code and improved design."
+    },
+    "biography_old": {
+      "name": "Biography (OLD)",
+      "description": "My very first website."
+    },
+    "contenttime": {
+      "name": "ContentTime",
+      "description": "Website for my Minecraft project, currently closed."
+    },
+    "weather_api": {
+      "name": "Weather API",
+      "description": "API for getting current weather, with widgets display."
+    },
+    "contenttime_api": {
+      "name": "ContentTime API",
+      "description": "API for ContentTime with Discord auth, personal cabinet and other features."
+    },
+    "gribmine": {
+      "name": "GribMine",
+      "description": "MSPT Minecraft server with cheap access. Multipage site with personal cabinet and admin panel."
+    },
+    "gribmine_api": {
+      "name": "GribMine API",
+      "description": "API for GribMine with personal cabinet, admin panel, and more features."
+    }
+  },
+
+  "other": "Other"
+}
