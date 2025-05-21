@@ -29,7 +29,7 @@ export default function SpotifyBlock() {
   const percent = data?.duration_ms ? (progress / data.duration_ms) * 100 : 0
 
   return (
-    <Block heading="spotify.json" icon="mdi:spotify">
+    <Block className="z-2" heading="spotify.json" icon="mdi:spotify">
       {data?.is_playing ? (
         <div className="flex items-center gap-6">
           <CoverBlur gradient={gradientGlow} imageUrl={imageUrl} />
