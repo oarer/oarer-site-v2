@@ -24,12 +24,12 @@ export default function WeatherBlock() {
           Не удалось загрузить погоду
         </p>
       ) : (
-        <div className="flex min-h-[64px] items-center gap-5">
+        <div className="flex min-h-[64px] min-w-[12rem] items-center gap-5">
           <div className="flex flex-col">
             <p className={`${mono.className} text-lg font-medium`}>
               {data.temp}°C
             </p>
-            <p className="text-[12px] font-semibold text-neutral-500">
+            <p className="text-[12px] font-semibold text-neutral-700">
               {data.condition}
             </p>
           </div>

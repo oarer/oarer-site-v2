@@ -18,7 +18,9 @@ export default function SpotifyBlock() {
   const { theme } = useTheme()
 
   const progress = useSpotifyProgress(data)
-  const imageUrl = data?.cover_image ?? '/fallback.gif'
+  const imageUrl =
+    data?.cover_image ??
+    'https://images-ext-1.discordapp.net/external/UM-fH2hrLGfeKs0z0QrzUi12BoI1W0W59xCRDeO2-K4/https/ptc.pwn3t.ru/708555202512289802.gif'
   const gradientGlow = useSpotifyGradient(imageUrl, theme)
 
   const formatTime = (ms = 0) => {
@@ -42,13 +44,13 @@ export default function SpotifyBlock() {
               {data.name}
             </Link>
             <p
-              className={`${mono.className} text-sm font-semibold text-neutral-400`}
+              className={`${mono.className} text-sm font-semibold text-neutral-600`}
             >
               {data.artists?.map((a) => a.name).join(', ') || 'None'}
             </p>
 
             <div
-              className={`${mono.className} flex w-2/3 justify-between text-xs text-neutral-500`}
+              className={`${mono.className} flex w-2/3 justify-between text-xs text-neutral-700`}
             >
               <span>{formatTime(progress)}</span>
               <span>{formatTime(data.duration_ms)}</span>
