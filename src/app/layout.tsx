@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import '@/shared/styles/globals.css'
 
@@ -64,6 +65,7 @@ export default function RootLayout({
       <body
         className={`${raleway.className} bg-neutral-100 transition-colors duration-800 ease-in-out dark:bg-neutral-950`}
       >
+        <SpeedInsights />
         <Providers>
           <TransitionEffect>
             {children}
