@@ -17,8 +17,8 @@ function generateWhyHash(original: string): string {
 const cache = new Map<string, string>()
 
 const nextConfig: NextConfig = {
-  webpack: (config) => {
-    if (process.env.NODE_ENV === 'production') {
+  ...(process.env.NODE_ENV === 'production' && {
+    webpack: (config) => {
       config.plugins.push(
         utwm({
           classGenerator: {
@@ -33,8 +33,8 @@ const nextConfig: NextConfig = {
         })
       )
       return config
-    }
-  },
+    },
+  }),
 
   images: {
     remotePatterns: [
