@@ -1,37 +1,57 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
-import { I18nextProvider } from 'react-i18next'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { useRef, useState, useEffect, type ReactNode } from 'react'
 import { ThemeProvider } from 'next-themes'
-import type { i18n as I18nType } from 'i18next'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import i18n from 'i18next'
+import { I18nextProvider, initReactI18next } from 'react-i18next'
 
-import { initI18n } from '@/lib/i18n'
+import en from '@/locales/en/translation.json'
+import ru from '@/locales/ru/translation.json'
 
-export default function Providers({ children }: { children: React.ReactNode }) {
+interface Props {
+  children: ReactNode
+}
+
+export default function Providers({ children }: Props) {
   const [mounted, setMounted] = useState(false)
-  const [i18nInstance, setI18nInstance] = useState<I18nType | null>(null)
-  const queryClient = useRef(new QueryClient())
+  const [i18nReady, setI18nReady] = useState(false)
+  const queryClient = useRef<QueryClient>(new QueryClient())
 
   useEffect(() => {
     setMounted(true)
 
-    const lang =
-      typeof document !== 'undefined'
-        ? document.cookie.match(/(?:^|; )lang=([^;]*)/)?.[1] || 'en'
-        : 'en'
+    if (!i18n.isInitialized) {
+      const lang =
+        typeof document !== 'undefined'
+          ? document.cookie.match(/(?:^|; )lang=([^;]*)/)?.[1] || 'en'
+          : 'en'
 
-    initI18n(lang).then((i18n) => {
-      setI18nInstance(i18n)
-    })
+      i18n
+        .use(initReactI18next)
+        .init({
+          resources: {
+            en: { translation: en },
+            ru: { translation: ru },
+          },
+          lng: lang,
+          fallbackLng: 'en',
+          interpolation: {
+            escapeValue: false,
+          },
+        })
+        .then(() => setI18nReady(true))
+    } else {
+      setI18nReady(true)
+    }
   }, [])
 
-  if (!mounted || !i18nInstance) return null
+  if (!mounted || !i18nReady) return null
 
   return (
     <ThemeProvider attribute="class" enableSystem>
       <QueryClientProvider client={queryClient.current}>
-        <I18nextProvider i18n={i18nInstance}>{children}</I18nextProvider>
+        <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
       </QueryClientProvider>
     </ThemeProvider>
   )
