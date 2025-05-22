@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, AnimatePresence } from 'motion/react'
+import { LazyMotion, domAnimation, m, AnimatePresence } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import { LayoutRouterContext } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 import { useContext, useRef } from 'react'
@@ -22,20 +22,22 @@ const TransitionEffect = ({ children }: { children: React.ReactNode }) => {
   if (!children) return null
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -25 }}
-        initial={{ opacity: 0, y: -25 }}
-        key={key}
-        transition={{
-          opacity: { duration: 1, delay: 0.2 },
-          y: { duration: 1, delay: 0.2 },
-        }}
-      >
-        <FrozenRouter>{children}</FrozenRouter>
-      </motion.div>
-    </AnimatePresence>
+    <LazyMotion features={domAnimation}>
+      <AnimatePresence mode="wait">
+        <m.div
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -25 }}
+          initial={{ opacity: 0, y: -25 }}
+          key={key}
+          transition={{
+            opacity: { duration: 1, delay: 0.2 },
+            y: { duration: 1, delay: 0.2 },
+          }}
+        >
+          <FrozenRouter>{children}</FrozenRouter>
+        </m.div>
+      </AnimatePresence>
+    </LazyMotion>
   )
 }
 
