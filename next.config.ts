@@ -3,10 +3,6 @@ import crypto from 'crypto'
 import type { NextConfig } from 'next'
 import utwm from 'unplugin-tailwindcss-mangle/webpack'
 
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
 function generateWhyHash(original: string): string {
   const hash = crypto
     .createHash('sha256')
@@ -71,4 +67,4 @@ const nextConfig: NextConfig = {
   },
 }
 
-module.exports = withBundleAnalyzer(nextConfig)
+export default nextConfig
