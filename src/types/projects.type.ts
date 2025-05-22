@@ -39,7 +39,7 @@ type Project = {
   link?: string
   statusText: StatusText
   stack: string[]
-  source?: string
+  source?: boolean
 }
 
 type ProjectCategoryDetail = {

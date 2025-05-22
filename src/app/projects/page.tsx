@@ -183,7 +183,7 @@ export default function ProjectsPage() {
                               {t(p.name)}
                             </p>
                             <p
-                              className={`${mono.className} text-sm text-[#6f6a69]`}
+                              className={`${mono.className} text-sm text-neutral-700 dark:text-neutral-300`}
                             >
                               {p.version} {p.shortLink}
                             </p>
