@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "target": "ES2024",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -19,17 +18,13 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@/public/img/*": ["./public/img/*"]
-    }
+      "@/*": ["./src/*"]
+    },
+    "target": "ESNext",
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.mjs",
-    ".next/types/**/*.ts",
-    "./public/img/**.png"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
