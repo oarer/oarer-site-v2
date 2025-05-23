@@ -29,7 +29,7 @@ export default function WeatherBlock() {
             <p className={`${mono.className} text-lg font-medium`}>
               {data.temp}°C
             </p>
-            <p className="text-[12px] font-semibold text-neutral-700">
+            <p className="text-[12px] font-semibold text-neutral-700 dark:text-neutral-400">
               {data.condition}
             </p>
           </div>

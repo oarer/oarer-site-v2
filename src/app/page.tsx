@@ -1,5 +1,3 @@
-'use client'
-
 import AboutBlock from '@/components/welcomePage/About'
 import ProjectsBlock from '@/components/welcomePage/Projects'
 import SkillsBlock from '@/components/welcomePage/Skills'

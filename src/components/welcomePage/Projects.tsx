@@ -1,3 +1,5 @@
+'use client'
+
 import { Icon } from '@iconify/react'
 import { useTranslation } from 'react-i18next'
 import Tilt from 'react-parallax-tilt'
