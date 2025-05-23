@@ -1,7 +1,7 @@
 import AboutBlock from '@/components/welcomePage/About'
 import ProjectsBlock from '@/components/welcomePage/Projects'
 import SkillsBlock from '@/components/welcomePage/Skills'
-import SpotifyBlock from '@/components/welcomePage/Spotify'
+// import SpotifyBlock from '@/components/welcomePage/Spotify'
 import TimeBlock from '@/components/welcomePage/Time'
 import WakaBlock from '@/components/welcomePage/Waka'
 import WeatherBlock from '@/components/welcomePage/Weather'
@@ -21,7 +21,7 @@ export default function HomePage() {
             <WakaBlock />
           </div>
           <AboutBlock />
-          <SpotifyBlock />
+          {/* <SpotifyBlock /> */}
         </div>
 
         <div className="order-3 flex flex-col">
