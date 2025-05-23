@@ -1,6 +1,6 @@
 {
   "bio.title": "Greetings, I am",
-  "bio.description": "I am a developer from Russia. I am <span class='text-[14px] opacity-70'>(almost)</span> FullStack and <span class='text-[14px] opacity-70'>(a little)</span> DevOps. I write Frontend in Next.js and Backend in Bun (ElysiaJS).",
+  "bio.description": "I am a developer from Russia. I am <span class='text-[14px] opacity-80'>(almost)</span> FullStack and <span class='text-[14px] opacity-80'>(a little)</span> DevOps. I write Frontend in Next.js and Backend in Bun (ElysiaJS).",
   "bio.list.all": "Full list",
 
   "spotify.title.none": "Hmm... It seems there's nothing here",
