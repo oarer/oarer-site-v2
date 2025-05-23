@@ -73,7 +73,7 @@ export default function SpotifyBlock() {
               {t('spotify.title.none')}
             </h1>
             <p
-              className={`${mono.className} text-xs font-semibold text-neutral-400`}
+              className={`${mono.className} text-xs font-semibold text-neutral-600`}
             >
               Not found
             </p>

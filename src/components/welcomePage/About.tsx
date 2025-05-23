@@ -20,8 +20,7 @@ export default function AboutBlock() {
           alt="avatar"
           className="rounded-full"
           height={100}
-          quality={100}
-          src="https://cdn.discordapp.com/avatars/708555202512289802/9141920a00169ecf7fed5c4ecb390578.png?size=128"
+          src="https://cdn.discordapp.com/avatars/708555202512289802/9141920a00169ecf7fed5c4ecb390578.png?size=100"
           width={100}
         />
         <p className={`${unbounded.className} relative text-xl sm:text-2xl`}>
