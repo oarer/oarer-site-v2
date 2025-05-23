@@ -9,11 +9,11 @@
     "lint": "next lint"
   },
   "browserslist": [
-    "Chrome >= 114",
-    "Firefox >= 115",
-    "Edge >= 114",
-    "Safari >= 16.5",
-    "iOS >= 16.5"
+    "Chrome >= 121",
+    "Firefox >= 122",
+    "Edge >= 121",
+    "Safari >= 17.4",
+    "iOS >= 17.4"
   ],
   "dependencies": {
     "@iconify/react": "^6.0.0",
