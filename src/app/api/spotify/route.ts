@@ -1,4 +1,3 @@
-/* src/app/api/spotify/route.ts */
 import { NextResponse } from 'next/server'
 
 let accessToken: string | null = null
@@ -64,7 +63,21 @@ async function fetchCurrentlyPlayingRaw() {
     )
   }
   if (res.status === 204) {
-    return { is_playing: false, progress_ms: 0, item: null } as const
+    return {
+      is_playing: false,
+      progress_ms: 0,
+      item: null as {
+        name: string
+        artists: Array<{ name: string }>
+        album: {
+          name: string
+          external_urls: { spotify: string }
+          images?: Array<{ url: string }>
+        }
+        external_urls: { spotify: string }
+        duration_ms: number
+      } | null,
+    } as const
   }
   if (!res.ok) {
     const errText = await res.text()
