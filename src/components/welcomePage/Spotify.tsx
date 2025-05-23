@@ -21,7 +21,10 @@ export default function SpotifyBlock() {
   const imageUrl =
     data?.cover_image ??
     'https://images-ext-1.discordapp.net/external/UM-fH2hrLGfeKs0z0QrzUi12BoI1W0W59xCRDeO2-K4/https/ptc.pwn3t.ru/708555202512289802.gif'
-  const gradientGlow = useSpotifyGradient(imageUrl, theme)
+  const gradientGlow = useSpotifyGradient(
+    imageUrl,
+    theme === 'dark' ? 'dark' : 'light'
+  )
 
   const formatTime = (ms = 0) => {
     const s = Math.floor(ms / 1000)

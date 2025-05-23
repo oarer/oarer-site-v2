@@ -29,7 +29,7 @@
     "forceConsistentCasingInFileNames": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "allowJs": false
+    "allowJs": true
   },
   "include": [
     "next-env.d.ts",
