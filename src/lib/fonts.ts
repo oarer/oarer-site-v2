@@ -2,17 +2,17 @@ import { Raleway, Unbounded, Space_Mono, Montserrat } from 'next/font/google'
 import localFont from 'next/font/local'
 
 export const raleway = Raleway({
-  weight: 'variable',
+  weight: ['400', '500', '600', '700'],
   subsets: ['latin', 'cyrillic'],
 })
 
 export const unbounded = Unbounded({
-  weight: 'variable',
+  weight: ['400', '500', '600', '700'],
   subsets: ['latin', 'cyrillic'],
 })
 
 export const montserrat = Montserrat({
-  weight: 'variable',
+  weight: ['400', '500', '600', '700'],
   subsets: ['latin', 'cyrillic'],
 })
 
