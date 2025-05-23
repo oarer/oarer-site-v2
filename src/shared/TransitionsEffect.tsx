@@ -1,6 +1,6 @@
 'use client'
 
-import { LazyMotion, domAnimation, m, AnimatePresence } from 'framer-motion'
+import { LazyMotion, domAnimation, m, AnimatePresence } from 'motion/react'
 import { usePathname } from 'next/navigation'
 import { LayoutRouterContext } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 import { useContext, useRef } from 'react'

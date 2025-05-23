@@ -1,53 +1,94 @@
 import { useState, useEffect } from 'react'
-
-function hexToHsl(hex: string): { h: number; s: number; l: number } {
-  let r = 0,
-    g = 0,
-    b = 0
-  if (hex.length === 4) {
-    r = parseInt(hex[1] + hex[1], 16)
-    g = parseInt(hex[2] + hex[2], 16)
-    b = parseInt(hex[3] + hex[3], 16)
-  } else if (hex.length === 7) {
-    r = parseInt(hex.slice(1, 3), 16)
-    g = parseInt(hex.slice(3, 5), 16)
-    b = parseInt(hex.slice(5, 7), 16)
-  }
-  r /= 255
-  g /= 255
-  b /= 255
-  const max = Math.max(r, g, b),
-    min = Math.min(r, g, b)
-  let h = 0,
-    s = 0,
-    l = (max + min) / 2
-
-  if (max !== min) {
-    const d = max - min
-    s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
-    switch (max) {
-      case r:
-        h = (g - b) / d + (g < b ? 6 : 0)
-        break
-      case g:
-        h = (b - r) / d + 2
-        break
-      case b:
-        h = (r - g) / d + 4
-        break
-    }
-    h *= 60
-  }
-  return { h, s, l }
-}
+import { Vibrant } from 'node-vibrant/browser'
 
 export function useSpotifyGradient(
   coverImage: string,
-  theme: 'light' | 'dark' = 'dark'
+  theme: string | undefined
 ): string {
-  const [gradientGlow, setGradient] = useState(
+  const [gradientGlow, setGradientGlow] = useState(
     'radial-gradient(circle, rgba(120,120,120,0.2) 20%, rgba(80,80,80,0.4) 60%, rgba(50,50,50,0.6) 90%)'
   )
+
+  function hexToHsl(hex: string) {
+    hex = hex.replace('#', '')
+    const r = parseInt(hex.substring(0, 2), 16) / 255
+    const g = parseInt(hex.substring(2, 4), 16) / 255
+    const b = parseInt(hex.substring(4, 6), 16) / 255
+
+    const max = Math.max(r, g, b)
+    const min = Math.min(r, g, b)
+    let h = 0,
+      s = 0,
+      l = (max + min) / 2
+
+    if (max !== min) {
+      const d = max - min
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
+      switch (max) {
+        case r:
+          h = (g - b) / d + (g < b ? 6 : 0)
+          break
+        case g:
+          h = (b - r) / d + 2
+          break
+        case b:
+          h = (r - g) / d + 4
+          break
+      }
+      h /= 6
+    }
+    return { h: h * 360, s, l }
+  }
+
+  function hslToRgba(h: number, s: number, l: number, a: number) {
+    s = Math.min(Math.max(s, 0), 1)
+    l = Math.min(Math.max(l, 0), 1)
+
+    function hue2rgb(p: number, q: number, t: number) {
+      if (t < 0) t += 1
+      if (t > 1) t -= 1
+      if (t < 1 / 6) return p + (q - p) * 6 * t
+      if (t < 1 / 2) return q
+      if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6
+      return p
+    }
+
+    let r: number, g: number, b: number
+    if (s === 0) {
+      r = g = b = l // серый
+    } else {
+      const q = l < 0.5 ? l * (1 + s) : l + s - l * s
+      const p = 2 * l - q
+      r = hue2rgb(p, q, h / 360 + 1 / 3)
+      g = hue2rgb(p, q, h / 360)
+      b = hue2rgb(p, q, h / 360 - 1 / 3)
+    }
+
+    return `rgba(${Math.round(r * 255)}, ${Math.round(g * 255)}, ${Math.round(b * 255)}, ${a})`
+  }
+
+  function desaturate(
+    hsl: { h: number; s: number; l: number },
+    amountPercent: number
+  ) {
+    return { ...hsl, s: Math.max(0, hsl.s - amountPercent / 100) }
+  }
+
+  function lighten(
+    hsl: { h: number; s: number; l: number },
+    amountPercent: number
+  ) {
+    return { ...hsl, l: Math.min(1, hsl.l + amountPercent / 100) }
+  }
+
+  function isGray(hex: string) {
+    return hexToHsl(hex).s < 0.1
+  }
+
+  function isBadGreen(hex: string) {
+    const { h, s } = hexToHsl(hex)
+    return h > 90 && h < 160 && s > 0.3
+  }
 
   useEffect(() => {
     if (!coverImage) return
@@ -57,53 +98,43 @@ export function useSpotifyGradient(
     img.src = coverImage
 
     const applyFallback = () =>
-      setGradient(
+      setGradientGlow(
         'radial-gradient(circle, rgba(120,120,120,0.2) 20%, rgba(80,80,80,0.4) 60%, rgba(50,50,50,0.6) 90%)'
       )
 
     img.onload = () => {
-      const canvas = document.createElement('canvas')
-      const ctx = canvas.getContext('2d')
-      if (!ctx) return applyFallback()
+      Vibrant.from(img)
+        .getPalette()
+        .then((palette) => {
+          const raw = [
+            palette.Vibrant?.hex,
+            palette.LightVibrant?.hex,
+            palette.DarkVibrant?.hex,
+            palette.Muted?.hex,
+            palette.LightMuted?.hex,
+            palette.DarkMuted?.hex,
+          ].filter(Boolean) as string[]
 
-      const w = (canvas.width = img.naturalWidth)
-      const h = (canvas.height = img.naturalHeight)
-      ctx.drawImage(img, 0, 0, w, h)
-      const data = ctx.getImageData(0, 0, w, h).data
+          const cleaned = raw.filter((hex) => !isGray(hex) && !isBadGreen(hex))
+          if (!cleaned.length) return applyFallback()
 
-      const samples = 30
-      const colors: string[] = []
-      for (let i = 0; i < samples; i++) {
-        const idx = Math.floor(Math.random() * (w * h)) * 4
-        const r = data[idx],
-          g = data[idx + 1],
-          b = data[idx + 2]
-        const hex =
-          '#' + [r, g, b].map((v) => v.toString(16).padStart(2, '0')).join('')
-        colors.push(hex)
-      }
+          const adjusted = cleaned.map((hex) => {
+            let hsl = hexToHsl(hex)
+            if (theme === 'light') {
+              hsl = desaturate(hsl, 10)
+              hsl = lighten(hsl, 10)
+              return hslToRgba(hsl.h, hsl.s, hsl.l, 0.4)
+            } else {
+              return hslToRgba(hsl.h, hsl.s, hsl.l, 0.6)
+            }
+          })
 
-      const filtered = colors.filter((hex) => {
-        const { h, s } = hexToHsl(hex)
-        const isGray = s < 0.1
-        const isBadGreen = h > 90 && h < 160 && s > 0.3
-        return !isGray && !isBadGreen
-      })
-
-      if (!filtered.length) return applyFallback()
-
-      const stops = filtered.map((hex, i) => {
-        const alpha = theme === 'light' ? 0.4 : 0.6
-
-        const [r, g, b] = hex
-          .slice(1)
-          .match(/.{2}/g)!
-          .map((c) => parseInt(c, 16))
-
-        return `rgba(${r},${g},${b},${alpha}) ${((i + 1) * 100) / filtered.length}%`
-      })
-
-      setGradient(`radial-gradient(circle at center, ${stops.join(', ')})`)
+          const gradient = `radial-gradient(circle at center, ${adjusted
+            .map((c, i) => `${c} ${(i + 1) * 15}%`)
+            .join(', ')})`
+          setGradientGlow(gradient)
+        })
+        .catch(applyFallback)
     }
 
     img.onerror = applyFallback

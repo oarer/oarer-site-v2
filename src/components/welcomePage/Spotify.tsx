@@ -2,7 +2,7 @@
 
 import { useTheme } from 'next-themes'
 import { useTranslation } from 'react-i18next'
-import { motion } from 'framer-motion'
+import { LazyMotion, domAnimation, m } from 'motion/react'
 import Link from 'next/link'
 
 import { useSpotify } from '@/hooks/spotify/useSpotify'
@@ -47,25 +47,27 @@ export default function SpotifyBlock() {
               {data.name}
             </Link>
             <p
-              className={`${mono.className} text-sm font-semibold text-neutral-600`}
+              className={`${mono.className} text-sm font-semibold text-neutral-600 dark:text-neutral-400`}
             >
               {data.artists?.map((a) => a.name).join(', ') || 'None'}
             </p>
 
             <div
-              className={`${mono.className} flex w-2/3 justify-between text-xs text-neutral-700`}
+              className={`${mono.className} flex w-2/3 justify-between text-xs text-neutral-700 dark:text-neutral-500`}
             >
               <span>{formatTime(progress)}</span>
               <span>{formatTime(data.duration_ms)}</span>
             </div>
 
-            <div className="relative h-1 w-2/3 overflow-hidden rounded bg-neutral-300/50 dark:bg-neutral-700/50">
-              <motion.div
-                className="absolute inset-0 rounded bg-green-500"
-                style={{ width: `${percent}%` }}
-                transition={{ ease: 'linear', duration: 0.5 }}
-              />
-            </div>
+            <LazyMotion features={domAnimation}>
+              <div className="relative h-1 w-2/3 overflow-hidden rounded bg-neutral-300/50 dark:bg-neutral-700/50">
+                <m.div
+                  className="absolute inset-0 rounded bg-green-500"
+                  style={{ width: `${percent}%` }}
+                  transition={{ ease: 'linear', duration: 0.5 }}
+                />
+              </div>
+            </LazyMotion>
           </div>
         </div>
       ) : (

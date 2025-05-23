@@ -1,6 +1,6 @@
 'use client'
 
-import { LazyMotion, domAnimation, m, AnimatePresence } from 'framer-motion'
+import { LazyMotion, domAnimation, m, AnimatePresence } from 'motion/react'
 
 const TransitionProjects = ({
   children,
