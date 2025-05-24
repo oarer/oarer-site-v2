@@ -18,6 +18,6 @@ export function useWeather() {
       const res = await axios.get<WeatherData>(`/api/weather?lang=${lang}`)
       return res.data
     },
-    staleTime: 5 * 60 * 1000,
+    staleTime: Infinity,
   })
 }

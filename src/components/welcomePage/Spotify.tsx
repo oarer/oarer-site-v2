@@ -53,14 +53,14 @@ export default function SpotifyBlock() {
             </p>
 
             <div
-              className={`${mono.className} flex w-2/3 justify-between text-xs text-neutral-700 dark:text-neutral-500`}
+              className={`${mono.className} flex justify-between text-xs text-neutral-700 dark:text-neutral-500`}
             >
               <span>{formatTime(progress)}</span>
               <span>{formatTime(data.duration_ms)}</span>
             </div>
 
             <LazyMotion features={domAnimation}>
-              <div className="relative h-1 w-2/3 overflow-hidden rounded bg-neutral-300/50 dark:bg-neutral-700/50">
+              <div className="relative h-1 overflow-hidden rounded bg-neutral-300/50 dark:bg-neutral-700/50">
                 <m.div
                   className="absolute inset-0 rounded bg-green-500"
                   style={{ width: `${percent}%` }}
@@ -72,7 +72,7 @@ export default function SpotifyBlock() {
         </div>
       ) : (
         <div className="flex items-center gap-4">
-          <div className="h-20 w-20 animate-pulse rounded-xl bg-neutral-400/30 dark:bg-neutral-800/50" />
+          <div className="h-[100px] w-[100px] animate-pulse rounded-xl bg-neutral-400/30 dark:bg-neutral-800/50" />
           <div>
             <h1 className="text-md font-semibold dark:text-neutral-200">
               {t('spotify.title.none')}

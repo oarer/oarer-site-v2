@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Vibrant } from 'node-vibrant/browser'
 
 export function useSpotifyGradient(
@@ -18,8 +18,8 @@ export function useSpotifyGradient(
     const max = Math.max(r, g, b)
     const min = Math.min(r, g, b)
     let h = 0,
-      s = 0,
-      l = (max + min) / 2
+      s = 0
+    const l = (max + min) / 2
 
     if (max !== min) {
       const d = max - min
@@ -64,7 +64,9 @@ export function useSpotifyGradient(
       b = hue2rgb(p, q, h / 360 - 1 / 3)
     }
 
-    return `rgba(${Math.round(r * 255)}, ${Math.round(g * 255)}, ${Math.round(b * 255)}, ${a})`
+    return `rgba(${Math.round(r * 255)}, ${Math.round(g * 255)}, ${Math.round(
+      b * 255
+    )}, ${a})`
   }
 
   function desaturate(
@@ -81,14 +83,14 @@ export function useSpotifyGradient(
     return { ...hsl, l: Math.min(1, hsl.l + amountPercent / 100) }
   }
 
-  function isGray(hex: string) {
+  const isGray = useCallback((hex: string) => {
     return hexToHsl(hex).s < 0.1
-  }
+  }, [])
 
-  function isBadGreen(hex: string) {
+  const isBadGreen = useCallback((hex: string) => {
     const { h, s } = hexToHsl(hex)
     return h > 90 && h < 160 && s > 0.3
-  }
+  }, [])
 
   useEffect(() => {
     if (!coverImage) return
@@ -138,7 +140,12 @@ export function useSpotifyGradient(
     }
 
     img.onerror = applyFallback
-  }, [coverImage, theme])
+
+    return () => {
+      img.onload = null
+      img.onerror = null
+    }
+  }, [coverImage, theme, isGray, isBadGreen])
 
   return gradientGlow
 }

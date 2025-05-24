@@ -14,16 +14,19 @@ export default function AboutBlock() {
   const { t } = useTranslation()
 
   return (
-    <Block heading="about.md">
+    <Block heading="about.md" icon="lucide:book-text">
       <div className="relative flex flex-col items-center gap-4 md:flex-row">
         <Image
           alt="avatar"
           className="rounded-full"
-          height={100}
-          src="https://cdn.discordapp.com/avatars/708555202512289802/9141920a00169ecf7fed5c4ecb390578.png?size=100"
-          width={100}
+          height={128}
+          quality={100}
+          src="/img/avatar.png"
+          width={128}
         />
-        <p className={`${unbounded.className} relative text-xl sm:text-2xl`}>
+        <p
+          className={`${unbounded.className} relative text-xl sm:text-3xl dark:text-neutral-100`}
+        >
           {t('bio.title')}{' '}
           <span className="relative inline-block text-red-500/70">
             @oarer
@@ -34,7 +37,7 @@ export default function AboutBlock() {
         </p>
       </div>
       <p
-        className="text-sm font-semibold text-neutral-700 sm:text-base dark:text-neutral-200/90"
+        className="text-sm font-semibold text-neutral-700 sm:text-lg dark:text-neutral-200/90"
         dangerouslySetInnerHTML={{ __html: t('bio.description') }}
       />
       <div className="flex flex-wrap gap-4">

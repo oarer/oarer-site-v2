@@ -12,7 +12,7 @@ const MotionImage = m.create(Image)
 export default function CoverBlur({ imageUrl, gradient }: CoverBlurProps) {
   return (
     <LazyMotion features={domAnimation}>
-      <div className="relative h-[90px] w-[90px]">
+      <div className="relative flex h-[110px] w-[110px] items-center">
         {[30, 40, 60].map((b, i) => (
           <m.div
             animate={{ opacity: 1 }}
@@ -34,7 +34,7 @@ export default function CoverBlur({ imageUrl, gradient }: CoverBlurProps) {
               animate={{ opacity: 1, scale: 1 }}
               className="overflow-hidden rounded-xl bg-neutral-200/30 dark:bg-neutral-900/50"
               exit={{ opacity: 0, scale: 1.05 }}
-              height={90}
+              height={100}
               initial={{ opacity: 0, scale: 0.95 }}
               key={imageUrl}
               quality={100}
@@ -48,7 +48,7 @@ export default function CoverBlur({ imageUrl, gradient }: CoverBlurProps) {
                 WebkitMaskSize: 'cover',
               }}
               transition={{ duration: 0.4, ease: 'easeInOut' }}
-              width={90}
+              width={100}
             />
           </Tilt>
         </AnimatePresence>

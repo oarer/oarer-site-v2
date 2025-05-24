@@ -28,6 +28,11 @@ const nextConfig: NextConfig = {
         hostname: 'ptc.pwn3t.ru',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'raw.githubusercontent.com',
+        pathname: '/**',
+      },
     ],
   },
 }

@@ -18,17 +18,20 @@ export default function WakaBlock() {
       {isLoading ? (
         <div className="h-6 w-3/5 animate-pulse rounded bg-neutral-500/40" />
       ) : (
-        <Link
-          className={`${mono.className} h-fit w-fit`}
-          href="https://wakatime.com/@oarer"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          {
-            data?.data?.grand_total
-              ?.human_readable_total_including_other_language
-          }
-        </Link>
+        <div className="grid items-center gap-1">
+          <Link
+            className={`${mono.className} text-md h-fit w-fit sm:text-xl`}
+            href="https://wakatime.com/@oarer"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            {
+              data?.data?.grand_total
+                ?.human_readable_total_including_other_language
+            }
+          </Link>
+          <p className="text-sm font-semibold opacity-90">Coding time</p>
+        </div>
       )}
     </Block>
   )

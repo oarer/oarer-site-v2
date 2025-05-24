@@ -30,5 +30,5 @@ export default function TimeView({ timeZone }: ClockProps) {
     return () => clearInterval(interval)
   }, [timeZone])
 
-  return <p className={`${mono.className}`}>{time}</p>
+  return <p className={`${mono.className} text-md sm:text-xl`}>{time}</p>
 }
