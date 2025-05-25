@@ -20,7 +20,7 @@ export default function ScrollDown() {
 
   return (
     <div
-      className="absolute bottom-4 left-1/2 hidden -translate-x-1/2 items-center gap-1 transition-opacity duration-300 md:flex"
+      className="absolute bottom-0 left-1/2 hidden -translate-x-1/2 items-center gap-1 transition-opacity duration-300 md:flex"
       style={{ opacity }}
     >
       <Icon className="text-xl" icon="lucide:chevrons-down" />
