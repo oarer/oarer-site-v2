@@ -71,7 +71,7 @@ export default function VSCodeBlock() {
             width={80}
           />
           <div>
-            <h1 className="text-lg font-semibold dark:text-neutral-200">
+            <h1 className="text-md font-semibold sm:text-lg dark:text-neutral-200">
               {data?.workplace}{' '}
               <span className="text-xs opacity-70">/ {data?.file}</span>
             </h1>
