@@ -10,8 +10,8 @@ export const projects = [
     title: 'GribMine',
     href: 'https://www.gribmine.ru',
     version: '/ v1',
-    statusText: 'Done, getting updates',
-    statusColor: '#07b97a',
+    statusText: 'Not supported anymore',
+    statusColor: '#c92e2e',
   },
   {
     title: 'ContentTime',
