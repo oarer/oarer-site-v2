@@ -49,14 +49,6 @@ export default function AboutBlock() {
           <Icon className="text-xl" icon="lucide:github" />
           <p className="font-semibold">GitHub</p>
         </BlockLink>
-        <BlockLink
-          className="flex items-center gap-2 px-4 py-2 hover:scale-98 hover:opacity-80 active:scale-94 active:opacity-90"
-          external
-          href="https://t.me/oarer_yml"
-        >
-          <Icon className="text-xl" icon="gravity-ui:logo-telegram" />
-          <p className="font-semibold">Telegram</p>
-        </BlockLink>
         <ThemeToggle />
         <LanguageSwitcher />
       </div>
