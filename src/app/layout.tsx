@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     'frontend',
     'backend',
   ],
-  metadataBase: new URL('https://oarer.space'),
+  metadataBase: new URL('https://oarer.fun'),
   robots: {
     index: true,
     follow: true,
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     title: 'oarer | biography',
     description:
       'Developer from Russia specializing in modern web technologies. I build Frontend with Next.js and Backend with Bun (ElysiaJS).',
-    url: 'https://oarer.space',
+    url: 'https://oarer.fun',
     siteName: 'oarer | biography',
     images: [
       {

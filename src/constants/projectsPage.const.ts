@@ -17,7 +17,7 @@ export const projectsPage: ProjectsCategory[][] = [
                 icon: '/favicon.ico',
                 glowColor: 'bg-red-600',
                 background: '/img/projects/bio.png',
-                shortLink: 'oarer.space',
+                shortLink: 'oarer.fun',
                 link: 'https://github.com/oarer/oarer-site-v2',
                 statusText: 'Production',
                 stack: ['React v19', 'NextJS 15.2.1', 'Tailwind v4'],
