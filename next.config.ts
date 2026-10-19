@@ -20,7 +20,7 @@ const nextConfig: NextConfig = {
 			},
 			{
 				protocol: 'https',
-				hostname: 'lastfm.freetls.fastly.net',
+				hostname: 'lastfm-img.freetls.fastly.net',
 				pathname: '/**',
 			},
 			{
